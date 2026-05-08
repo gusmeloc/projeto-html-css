@@ -424,7 +424,7 @@ body.riotbar * { scroll-margin-top: 80px; }
         align-items: center; 
     }
 
-    .icone-globlo-mobile svg {
+    .icone-globo-mobile svg {
         width:24px;
         height:24px;
     }
@@ -458,6 +458,7 @@ body.riotbar * { scroll-margin-top: 80px; }
         height: 48px;
         justify-content: center;
     }
+    
     .icone-hamburguer svg {
         width: 24px;
         height: 24px;
