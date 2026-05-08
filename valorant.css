@@ -416,20 +416,53 @@ body.riotbar * { scroll-margin-top: 80px; }
         align-items: center;
         gap: 15px; 
         margin-left: auto; 
-        padding-right: 20px; 
+        padding-right: 5px; 
     }
     
-    .icone-globo-mobile { display: flex; align-items: center; }
+    .icone-globo-mobile { 
+        display: flex; 
+        align-items: center; 
+    }
 
+    .icone-globlo-mobile svg {
+        width:24px;
+        height:24px;
+    }
+    
+
+    .riotgames-caixa {
+        padding-left: 4px;      
+    }
+
+    .valorant {
+        margin-left: 35px;
+    }
+    
+    .valorant-caixa a {
+        max-height:35px;
+    }
+
+     .valorant-caixa a svg {
+        height: 40px;
+        width: 52px;
+    }
+
+    
     .icone-hamburguer {
         background-color: #2b2a29;
-        padding: 8px 10px;
         border-radius: 12px;
         cursor: pointer;
         display: flex;
         align-items: center;
+        width: 48px
+        height: 48px;
+        justify-content: center;
     }
-
+    .icone-hamburguer svg {
+        width: 24px;
+        height: 24px;
+    }
+    
     .logo-gigante img {
         max-width: 240px; 
     }
