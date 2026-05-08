@@ -425,8 +425,8 @@ body.riotbar * { scroll-margin-top: 80px; }
     }
 
     .icone-globo-mobile svg {
-        width:24px;
-        height:24px;
+        width: 24px;
+        height: 24px;
     }
     
 
@@ -439,7 +439,7 @@ body.riotbar * { scroll-margin-top: 80px; }
     }
     
     .valorant-caixa a {
-        max-height:35px;
+        max-height: 35px;
     }
 
      .valorant-caixa a svg {
@@ -450,11 +450,11 @@ body.riotbar * { scroll-margin-top: 80px; }
     
     .icone-hamburguer {
         background-color: #2b2a29;
-        border-radius: 12px;
+        border-radius: 18px;
         cursor: pointer;
         display: flex;
         align-items: center;
-        width: 48px
+        width: 48px;
         height: 48px;
         justify-content: center;
     }
