@@ -60,3 +60,18 @@ function adicionarFavorito(uuid,nome,icone) {
     localStorage.setItem('valorant_favs', JSON.stringify(favs));
     carregarFavoritos();
 }
+function carregarFavoritos() {
+    const favs = JSON.parse(localStorage.getItem('valorant_favs')) || []
+
+containerFavoritos.innerHTML = "";
+    favs.forEach( f => {
+        const div = document.createElement('div');
+        div.className =  'card-agente';
+        div.innerHTML = ` <img src="${f.icone}" alt="${f.nome}" style="width: 80px">
+            <h3>${f.nome}</h3>
+            <button class="btn-acao" onclick="removerFavorito('${f.uuid}')">REMOVER</button>
+        `;
+        containerFavoritos.appendChild(div);
+    });
+}
+    
