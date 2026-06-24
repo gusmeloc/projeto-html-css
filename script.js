@@ -81,3 +81,7 @@ function removerFavorito(uuid){
     localStorage.setItem('valorant_favs', JSON.stringify(favs));
     carregarFavoritos();
 }
+
+// eventos
+btnBuscar.addEventListener('click', buscarAgentes);
+window.onload = carregarFavoritos; // p/ colocar os fav qnd abrir a pg
