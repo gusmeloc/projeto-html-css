@@ -47,3 +47,16 @@ function renderizarCards(lista, container, botaoFavoritar) {
         container.appendChild(div);
     });
 }
+// localStorage
+function adicionarFavorito(uuid,nome,icone) {
+
+    let favs = JSON.parse(localStorage.getItem('valorant_favs')) || [];
+
+    if (favs.find(f => f.uuid === uuid)) {
+        alert("Este agente já está na sua equipe!");
+        return;
+    }
+    favs.push({ uuid, nome, icone});
+    localStorage.setItem('valorant_favs', JSON.stringify(favs));
+    carregarFavoritos();
+}
