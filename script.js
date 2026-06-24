@@ -61,7 +61,7 @@ function adicionarFavorito(uuid,nome,icone) {
     carregarFavoritos();
 }
 function carregarFavoritos() {
-    const favs = JSON.parse(localStorage.getItem('valorant_favs')) || []
+    const favs = JSON.parse(localStorage.getItem('valorant_favs')) || [];
 
 containerFavoritos.innerHTML = "";
     favs.forEach( f => {
