@@ -75,3 +75,9 @@ containerFavoritos.innerHTML = "";
     });
 }
     
+function removerFavorito(uuid){
+    let favs = JSON.parse(localStorage.getItem('valorant_favs)) || [];
+    favs = favs.filter(f => f.uuid !== uuid);
+    localStorage.setItem('valorant_favs', JSON.stringify(favs));
+    carregarFavoritos();
+}
