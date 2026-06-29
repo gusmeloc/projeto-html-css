@@ -166,25 +166,21 @@ body.riotbar * { scroll-margin-top: 80px; }
     position: relative;
 }
 
-#input-busca-topo {
-    width: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-    background: #2b2a29;
+.input-topo {
+    background-color: #2b2a29; 
     border: none;
+    border-bottom: 2px solid #ff4655; 
     color: white;
-    padding: 10px;
-    font-family: 'Inter', sans-serif;
+    padding: 8px 12px;
     margin-left: 10px;
-    border-bottom: 2px solid #ff4655;
+    font-family: 'Inter', sans-serif;
     outline: none;
+    width: 200px;
+    transition: all 0.3s ease; 
 }
 
-#input-busca-topo.ativo {
-    width: 200px;
-    opacity: 1;
-    visibility: visible;
+.escondido {
+    display: none !important;
 }
 
 #container-resultados {
