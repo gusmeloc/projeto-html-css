@@ -97,3 +97,29 @@ if(btnBuscar) {
     btnBuscar.addEventListener('click', buscarAgentes);
 }
 window.onload = carregarFavoritos;
+
+// lupa do menu
+const btnLupa = document.getElementById('btn-lupa');
+const inputTopo = document.getElementById('input-busca-topo');
+
+btnLupa.addEventListener('click', function() {
+    // se estiver escondido, mostra; se estiver visível, esconde
+    if (inputTopo.style.display === 'none') {
+        inputTopo.style.display = 'block';
+        inputTopo.focus(); // coloca o cursor dentro automaticamente
+    } else {
+        inputTopo.style.display = 'none';
+    }
+});
+
+// busca funciona quando apertar ENTER no campo da lupa
+inputTopo.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        // copiam o valor do topo para o campo de baixo para usar a mesma função
+        inputBusca.value = inputTopo.value; 
+        buscarAgentes(); // chama o AJAX
+        
+        // rola a página até os resultados para o usuário ver
+        containerResultados.scrollIntoView({ behavior: 'smooth' });
+    }
+});
