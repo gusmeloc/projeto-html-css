@@ -559,3 +559,15 @@ body.riotbar * { scroll-margin-top: 80px; }
 }
 .card-agente img { width: 100%; }
 .btn-acao { background: #ff4655; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; }
+
+#input-busca-topo {
+    background: #2b2a29;
+    border: none;
+    border-bottom: 2px solid #ff4655;
+    color: white;
+    padding: 8px;
+    margin-left: 10px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    width: 150px;
+}
