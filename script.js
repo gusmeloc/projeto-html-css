@@ -102,24 +102,32 @@ window.onload = carregarFavoritos;
 const btnLupa = document.getElementById('btn-lupa');
 const inputTopo = document.getElementById('input-busca-topo');
 
+// clicar na lupa
 btnLupa.addEventListener('click', function() {
-    // se estiver escondido, mostra; se estiver visível, esconde
-    if (inputTopo.style.display === 'none') {
-        inputTopo.style.display = 'block';
-        inputTopo.focus(); // coloca o cursor dentro automaticamente
-    } else {
-        inputTopo.style.display = 'none';
+    // on/off a classe que esconde o campo
+    inputTopo.classList.toggle('escondido');
+    
+    // se ele apareceu, coloca o foco nele
+    if (!inputTopo.classList.contains('escondido')) {
+        inputTopo.focus();
     }
 });
 
-// busca funciona quando apertar ENTER no campo da lupa
+// faz a busca quando apertar ENTER
 inputTopo.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
-        // copiam o valor do topo para o campo de baixo para usar a mesma função
-        inputBusca.value = inputTopo.value; 
-        buscarAgentes(); // chama o AJAX
-        
-        // rola a página até os resultados para o usuário ver
-        containerResultados.scrollIntoView({ behavior: 'smooth' });
+        const termo = inputTopo.value.trim();
+        if (termo.length >= 3) {
+            // preenche o campo de baixo automaticamente e busca
+            const inputPrincipal = document.getElementById('input-busca');
+            if(inputPrincipal) inputPrincipal.value = termo;
+            
+            buscarAgentes(); // função AJAX
+            
+            // rola a página para os resultados
+            document.getElementById('container-resultados').scrollIntoView({ behavior: 'smooth' });
+        } else {
+            alert("Digite pelo menos 3 caracteres!");
+        }
     }
 });
