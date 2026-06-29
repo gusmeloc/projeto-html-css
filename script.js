@@ -9,22 +9,27 @@ const erroValidacao = document.getElementById('erro-validacao');
 // ajax 
 function buscarAgentes() {
     const termo = inputBusca.value.trim().toLowerCase();
-    if (termo.length < 0) {
+    
+    // Corrigido para validar os 3 caracteres (Requisito 4)
+    if (termo.length < 3) {
         erroValidacao.textContent = "Digite pelo menos 3 caracteres.";
         return;
     }
     erroValidacao.textContent = "";
 
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://valorant-api.com/v1/agents?language=pt-BRisPlayableCharacter=true', true);
+    // adicionado o '&' na URL
+    xhr.open('GET', 'https://valorant-api.com/v1/agents?language=pt-BR&isPlayableCharacter=true', true);
+    
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             const resposta = JSON.parse(xhr.responseText);
 
-            // filtragem por nome
+            // toLowerCase() com 'r'
             const filtrados = resposta.data.filter(a =>
-                a.displayName.toLoweCase().includes(termo));
-                renderizarCards(filtrados, containerResultados, true);
+                a.displayName.toLowerCase().includes(termo)
+            );
+            renderizarCards(filtrados, containerResultados, true);
         }
     };
     xhr.send();
@@ -34,54 +39,61 @@ function buscarAgentes() {
 function renderizarCards(lista, container, botaoFavoritar) {
     container.innerHTML = "";
     lista.forEach(agente => {
-        const div = documento.createElement('div');
+        // era 'documento', mudei para 'document'
+        const div = document.createElement('div');
+        div.className = 'card-agente'; // adicionado para pegar o estilo do CSS
         div.innerHTML = `
         <img src="${agente.displayIcon}" alt="${agente.displayName}">
         <h3>${agente.displayName}</h3>
         ${botaoFavoritar
             ? `<button class="btn-acao" onclick="adicionarFavorito('${agente.uuid}', '${agente.displayName}', '${agente.displayIcon}')">ADICIONAR À EQUIPE</button>`
             : `<button class="btn-acao" style="border-color:#7e7e7e; color: #7e7e7e" 
-            onclick= "removerFavorito('${agente.uuid}')">DISPENSAR</button>`
+            onclick="removerFavorito('${agente.uuid}')">DISPENSAR</button>`
             }
         `;
         container.appendChild(div);
     });
 }
-// localStorage
-function adicionarFavorito(uuid,nome,icone) {
 
+// localStorage
+function adicionarFavorito(uuid, nome, icone) {
     let favs = JSON.parse(localStorage.getItem('valorant_favs')) || [];
 
     if (favs.find(f => f.uuid === uuid)) {
         alert("Este agente já está na sua equipe!");
         return;
     }
-    favs.push({ uuid, nome, icone});
+    favs.push({ uuid, nome, icone });
     localStorage.setItem('valorant_favs', JSON.stringify(favs));
     carregarFavoritos();
 }
+
 function carregarFavoritos() {
     const favs = JSON.parse(localStorage.getItem('valorant_favs')) || [];
-
-containerFavoritos.innerHTML = "";
-    favs.forEach( f => {
+    containerFavoritos.innerHTML = "";
+    
+    favs.forEach(f => {
         const div = document.createElement('div');
-        div.className =  'card-agente';
-        div.innerHTML = ` <img src="${f.icone}" alt="${f.nome}" style="width: 80px">
+        div.className = 'card-agente';
+        div.innerHTML = `
+            <img src="${f.icone}" alt="${f.nome}" style="width: 80px">
             <h3>${f.nome}</h3>
             <button class="btn-acao" onclick="removerFavorito('${f.uuid}')">REMOVER</button>
         `;
         containerFavoritos.appendChild(div);
     });
 }
-    
-function removerFavorito(uuid){
-    let favs = JSON.parse(localStorage.getItem('valorant_favs)) || [];
+
+function removerFavorito(uuid) {
+    // faltava fechar a aspa simples em 'valorant_favs'
+    let favs = JSON.parse(localStorage.getItem('valorant_favs')) || [];
     favs = favs.filter(f => f.uuid !== uuid);
     localStorage.setItem('valorant_favs', JSON.stringify(favs));
     carregarFavoritos();
 }
 
 // eventos
-btnBuscar.addEventListener('click', buscarAgentes);
-window.onload = carregarFavoritos; // p/ colocar os fav qnd abrir a pg
+if(btnBuscar) {
+    btnBuscar.addEventListener('click', buscarAgentes);
+}
+window.onload = carregarFavoritos;
