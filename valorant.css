@@ -160,11 +160,50 @@ body.riotbar * { scroll-margin-top: 80px; }
     height: 100%; 
 }
 
-.busca { 
-    display: flex; 
-    align-items: center; 
-    height: 100%; 
+.busca {
+    display: flex;
+    align-items: center;
+    position: relative;
 }
+
+#input-busca-topo {
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    background: #2b2a29;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    margin-left: 10px;
+    border-bottom: 2px solid #ff4655;
+    outline: none;
+}
+
+#input-busca-topo.ativo {
+    width: 200px;
+    opacity: 1;
+    visibility: visible;
+}
+
+#container-resultados {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 40px;
+    background-color: #0f1923;
+}
+
+.card-agente {
+    background: #1a242e;
+    border: 1px solid #333;
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+
+.card-agente img { width: 100%; border-bottom: 2px solid #ff4655; }
 
 .busca-container { 
     display: flex; 
